@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/demo_room.png" type="Texture" id=2]
-[ext_resource path="res://levels/demo/demo.gd" type="Script" id=3]
+[ext_resource path="res://sprites/tileset.png" type="Texture" id=3]
+[ext_resource path="res://Interface/Pausescreen.tscn" type="PackedScene" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 1633.26, 862.913, 1918.15, 1012.14, 1915.14, 1060.37, 1361.94, 926.221, 1194.63, 861.405, 1069.52, 914.162, 778.603, 871.957, 936.874, 972.949, 748.456, 948.831, 20.411, 1057.36, 21.9184, 1016.66, 1155.44, 1030.23, 157.579, 947.324 )
@@ -17,9 +18,9 @@ position = Vector2( 969.114, 540.331 )
 scale = Vector2( 1.0086, 1 )
 texture = ExtResource( 2 )
 
-[node name="Navigation2D" type="Navigation2D" parent="."]
+[node name="Floor" type="Navigation2D" parent="."]
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Floor"]
 navpoly = SubResource( 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -31,3 +32,9 @@ position = Vector2( -178.944, 863.186 )
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
+zoom = Vector2( 1.2, 1.2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pausescreen" parent="CanvasLayer" instance=ExtResource( 4 )]
+visible = false
