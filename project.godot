@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Historische Roman"
+config/name="Test Historische Roman"
 run/main_scene="res://levels/demo/demo.tscn"
 config/icon="res://icon.png"
 
