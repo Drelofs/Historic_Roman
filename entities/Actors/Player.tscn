@@ -67,6 +67,7 @@ func MovementLoop(delta):
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 38.6102
+height = 0.371971
 
 [node name="Player" type="KinematicBody2D"]
 script = SubResource( 1 )
@@ -77,5 +78,5 @@ scale = Vector2( 1, 5.94629 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -48.0918 )
+position = Vector2( 0, -38.383 )
 shape = SubResource( 2 )
