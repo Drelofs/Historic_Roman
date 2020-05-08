@@ -2,58 +2,23 @@
 
 [ext_resource path="res://entities/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/demo_room.png" type="Texture" id=2]
-[ext_resource path="res://sprites/tileset.png" type="Texture" id=3]
+[ext_resource path="res://levels/demo/demo.gd" type="Script" id=3]
 [ext_resource path="res://Interface/Pausescreen.tscn" type="PackedScene" id=4]
 
-[sub_resource type="TileSet" id=1]
-0/name = "tileset.png 0"
-0/texture = ExtResource( 3 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 80, 80 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "demo_room.png 1"
-1/texture = ExtResource( 2 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 1040, 960, 80, 80 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 1151.79, 936.203, 1641.67, 856.314, 1912.99, 1001.02, 1065.87, 978.409, 1912.99, 1073.37, 7.71579, 1071.86, 6.20845, 1001.02, 955.833, 960.321, 1017.63, 925.652, 149.406, 930.174, 720.688, 928.667, 945.282, 912.086, 753.849, 853.3, 990.502, 875.91 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5, 6, 3 ), PoolIntArray( 7, 8, 3 ), PoolIntArray( 7, 3, 6, 9, 10 ), PoolIntArray( 11, 7, 10, 12 ), PoolIntArray( 13, 11, 12 ), PoolIntArray( 13, 12, 1 ), PoolIntArray( 13, 1, 0 ) ]
+outlines = [ PoolVector2Array( 7.71579, 1071.86, 6.20845, 1001.02, 149.406, 930.174, 720.688, 928.667, 753.849, 853.3, 1641.67, 856.314, 1912.99, 1001.02, 1912.99, 1073.37 ), PoolVector2Array( 945.282, 912.086, 955.833, 960.321, 1017.63, 925.652, 1065.87, 978.409, 1151.79, 936.203, 990.502, 875.91 ) ]
 
-[node name="Level1" type="Node2D"]
+[node name="root" type="Node2D"]
+script = ExtResource( 3 )
 
-[node name="demo_room" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 1920.0
-margin_bottom = 1080.0
+[node name="demo_room" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 1 )
-cell_size = Vector2( 80, 80 )
-format = 1
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 2170.38, 747.31 )
+position = Vector2( 1581.28, 951.23 )
 z_index = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -65,3 +30,11 @@ zoom = Vector2( 1.2, 1.2 )
 
 [node name="Pausescreen" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color( 1, 0.984314, 0.0941176, 1 )
