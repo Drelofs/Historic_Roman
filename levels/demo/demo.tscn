@@ -11,7 +11,7 @@ vertices = PoolVector2Array( 753.849, 853.3, 1641.67, 856.314, 979.174, 916.212,
 polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 0, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 9, 4, 3, 10, 7, 11 ), PoolIntArray( 8, 2, 1, 5 ), PoolIntArray( 10, 8, 7 ) ]
 outlines = [ PoolVector2Array( 7.71579, 1071.86, 6.20845, 1001.02, 149.406, 930.174, 720.688, 928.667, 753.849, 853.3, 1641.67, 856.314, 1912.99, 1001.02, 1912.99, 1073.37 ), PoolVector2Array( 880.747, 930.566, 888.95, 1022.84, 973.022, 1026.94, 979.174, 916.212 ) ]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 1089.23, 467.884 )
 
 [node name="root" type="Node2D"]
@@ -55,22 +55,22 @@ default_color = Color( 1, 0.984314, 0.0941176, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 961.312, 329.839 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2( 973.296, 1544.17 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2( 2387.35, 948.987 )
 rotation = -1.5708
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2( -468.72, 873.091 )
 rotation = -1.5708
-shape = SubResource( 3 )
+shape = SubResource( 2 )
