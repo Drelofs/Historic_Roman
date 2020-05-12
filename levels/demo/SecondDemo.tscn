@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://entities/Actors/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/demo_room.png" type="Texture" id=2]
+[ext_resource path="res://levels/demo/demo.gd" type="Script" id=3]
+[ext_resource path="res://Interface/Pausescreen.tscn" type="PackedScene" id=4]
+
+[node name="root" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="demo_room" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1581.28, 951.23 )
+z_index = 10
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+zoom = Vector2( 1.2, 1.2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pausescreen" parent="CanvasLayer" instance=ExtResource( 4 )]
+visible = false

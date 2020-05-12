@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://entities/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/demo_room.png" type="Texture" id=2]
 [ext_resource path="res://levels/demo/demo.gd" type="Script" id=3]
 [ext_resource path="res://Interface/Pausescreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/enemy.png" type="Texture" id=5]
+[ext_resource path="res://entities/Environments/Stairs.tscn" type="PackedScene" id=6]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 753.849, 853.3, 1641.67, 856.314, 979.174, 916.212, 880.747, 930.566, 720.688, 928.667, 1912.99, 1001.02, 1912.99, 1073.37, 7.71579, 1071.86, 973.022, 1026.94, 149.406, 930.174, 888.95, 1022.84, 6.20845, 1001.02 )
@@ -51,26 +52,31 @@ navpoly = SubResource( 1 )
 [node name="Line2D" type="Line2D" parent="."]
 default_color = Color( 1, 0.984314, 0.0941176, 1 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="border-top" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border-top"]
 position = Vector2( 961.312, 329.839 )
 shape = SubResource( 2 )
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="border-bottom" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border-bottom"]
 position = Vector2( 973.296, 1544.17 )
 shape = SubResource( 2 )
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+[node name="border-right" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border-right"]
 position = Vector2( 2387.35, 948.987 )
 rotation = -1.5708
 shape = SubResource( 2 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2( -468.72, 873.091 )
+[node name="border-left" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border-left"]
+position = Vector2( -459.259, 957.396 )
 rotation = -1.5708
 shape = SubResource( 2 )
+
+[node name="Stairs" parent="." instance=ExtResource( 6 )]
+position = Vector2( 386.677, 926.02 )
