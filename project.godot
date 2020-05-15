@@ -19,6 +19,11 @@ config/name="Test Historische Roman"
 run/main_scene="res://levels/demo/demo.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ConstantsScript="*res://entities/Constants.gd"
+ConstantsScene="*res://entities/Constants.tscn"
+
 [display]
 
 window/size/width=1920
