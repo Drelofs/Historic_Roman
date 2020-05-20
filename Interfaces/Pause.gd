@@ -8,8 +8,8 @@ func _physics_process(_delta):
 		$MarginContainer/VBoxContainer/VBoxContainer/TextureButton.grab_focus()
 	if $MarginContainer/VBoxContainer/VBoxContainer/TextureButton2.is_hovered() == true:
 		$MarginContainer/VBoxContainer/VBoxContainer/TextureButton2.grab_focus()	
-	
-	
+
+
 func _input(event):
 	if event.is_action_pressed("pause"):
 		var new_pause_state = not get_tree().paused;

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hervatten_selected.png-c547db6e882329ba1b4afa3b66e65db6.stex"
+path="res://.import/Hervatten_selected.png-9e2abb839735ef2ccfd3f0ad53bc83ce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Hervatten_selected.png"
-dest_files=[ "res://.import/Hervatten_selected.png-c547db6e882329ba1b4afa3b66e65db6.stex" ]
+source_file="res://Sprites/Hervatten_selected.png"
+dest_files=[ "res://.import/Hervatten_selected.png-9e2abb839735ef2ccfd3f0ad53bc83ce.stex" ]
 
 [params]
 

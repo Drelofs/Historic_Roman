@@ -16,12 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Historische Roman"
-run/main_scene="res://Interface/Titlescreen.tscn"
+run/main_scene="res://Levels/DebugLevel1/DebugLevel1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-ConstantsScene="*res://entities/Constants.tscn"
+Global="*res://Global.tscn"
 
 [display]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Gametitle.png-ad7052177d43bd78d7bfada7ca698858.stex"
+path="res://.import/Gametitle.png-c3c7f698d1375c8c512a0e0c2258f505.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Gametitle.png"
-dest_files=[ "res://.import/Gametitle.png-ad7052177d43bd78d7bfada7ca698858.stex" ]
+source_file="res://Sprites/Gametitle.png"
+dest_files=[ "res://.import/Gametitle.png-c3c7f698d1375c8c512a0e0c2258f505.stex" ]
 
 [params]
 
