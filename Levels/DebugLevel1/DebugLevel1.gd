@@ -16,4 +16,4 @@ func _input( event ):
 		Global.remove_player()
 	
 	if event.is_action_pressed("ui_left"):
-		Global.goto_scene( next_level , true, 300, 300 )
+		Global.go_to_level( next_level , true, 300, 300 )

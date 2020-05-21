@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://interfaces/pause.gd" type="Script" id=1]
+[ext_resource path="res://Interfaces/PauseScreen/PauseScreen.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Pauze.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Hervatten.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Hervatten_selected.png" type="Texture" id=4]
 [ext_resource path="res://sprites/Exit.png" type="Texture" id=5]
 [ext_resource path="res://sprites/Exit_selected.png" type="Texture" id=6]
 
-[node name="Pausescreen" type="Control"]
+[node name="PauseScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
