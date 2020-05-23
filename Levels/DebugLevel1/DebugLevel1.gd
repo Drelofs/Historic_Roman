@@ -16,4 +16,7 @@ func _input( event ):
 		Global.remove_player()
 	
 	if event.is_action_pressed("ui_left"):
-		Global.go_to_level( next_level , true, 300, 300 )
+		Global.visible(true)
+		
+	if event.is_action_pressed("ui_right"):
+		Global.visible(false)
