@@ -6,7 +6,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node
 
-const Player := preload( 'res://entities/actors/FakePlayer.tscn' )
+const Player := preload( 'res://entities/actors/Player.tscn' )
 onready var transition = $TransitionScreen/ColorRect/AnimationPlayer
 var active_scene = null
 var active_player = null
@@ -94,7 +94,7 @@ shader_param/cutoff = 1.0
 shader_param/smooth_size = 0.1
 shader_param/mask = ExtResource( 2 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "Fade"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
@@ -129,4 +129,4 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionScreen/ColorRect"]
-anims/Fade = SubResource( 5 )
+anims/Fade = SubResource( 4 )

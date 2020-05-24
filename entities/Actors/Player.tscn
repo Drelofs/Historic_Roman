@@ -5,64 +5,47 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends KinematicBody2D
 
-var speed := 0
-var max_speed := 400
-var acceleration := 800
-var moving := false
+onready var Character = $Aagje
 
-var target = Vector2()
-var velocity = Vector2()
 
-var path := PoolVector2Array() setget set_path 
+var speed = 100
+var step_size = speed
+var player_position = get_position()
+var player_target = Vector2(0,0)
+
 
 func _ready() -> void:
-	set_process(false)
+	pass
 
-func _process(delta: float) -> void:
-	var move_distance : = speed * delta
-	move_along_path(move_distance)	
 
-func move_along_path(distance : float) -> void:
-	var start_point : = position
-	for i in range(path.size()):
-		var distance_to_next : = start_point.distance_to(path[0])
-		if distance <= distance_to_next and distance >= 0.0:
-			position = start_point.linear_interpolate(path[0], distance / distance_to_next)
-			break
-		elif distance < 0.0:
-			position = path[0]
-			set_process(false)
-			break
-		distance -= distance_to_next
-		start_point = path[0]
-		path.remove(0)
-
-func set_path(value: PoolVector2Array):
-	path = value
-	if value.size() == 0:
-		return
-	set_process(true)	
-
-func _unhandled_input(event):
+func _input(event):
 	if event.is_action_pressed(\"left_click\"):
-		moving = true
-		target = get_global_mouse_position()
-	
+		player_target = get_global_mouse_position()
+		var _character_scale_x = abs(Character.scale.x)
+		Character.scale.x = _character_scale_x * sign( player_target.x - player_position.x )
+
+
 func _physics_process(delta):
-	MovementLoop(delta)	
+	player_position = get_position()
+	var _distance_x = player_target.x - player_position.x # Verschil op X-as
+	var _distance_y = player_target.y - player_position.y # Verschil op Y-as
+	var _distance = sqrt( pow( _distance_x, 2 ) + pow( _distance_y, 2 ) ) # Pythagoras voor ware afstand
+	var _angle = asin( _distance_x / _distance ) # De hoek in radialen
 	
-func MovementLoop(delta):
-	if moving == false:
-		speed = 0
-	else: 
-		speed += acceleration * delta
-		if speed > max_speed:
-			speed = max_speed	
-	velocity = position.direction_to(target) * speed
-	if position.distance_to(target) > 5:
-		velocity = move_and_slide(velocity)
-	else: 
-		moving = false	
+	# Als de afstand kleiner is dan de stapgrootte, maak stapgrootte gelijk aan afstand
+	step_size = speed if _distance > speed else _distance
+	var _movement_on_x = step_size * sin(_angle)
+	var _movement_on_y = step_size * cos(_angle) * sign(_distance_y)
+	var _motion = Vector2( _movement_on_x, _movement_on_y ) # De afstand die elke frame wordt afgelegd
+	move_and_collide(_motion * delta)
+	
+	# Loop beweging
+	var _is_moving = step_size / speed
+	Character.walking = _is_moving
+	
+	# Welke kant kijkt de speler op
+	
+
 "
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -76,4 +59,4 @@ shape = SubResource( 2 )
 
 [node name="Aagje" parent="." instance=ExtResource( 1 )]
 position = Vector2( -1.01793, -0.649834 )
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.35, 0.35 )

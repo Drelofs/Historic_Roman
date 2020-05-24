@@ -10,7 +10,7 @@ func _ready():
 
 func _input( event ):
 	if event.is_action_pressed("ui_up"):
-		Global.spawn_player( 100, 100 )
+		Global.spawn_player( 100, 500 )
 	
 	if event.is_action_pressed("ui_down"):
 		Global.remove_player()
