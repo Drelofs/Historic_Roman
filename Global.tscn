@@ -7,7 +7,7 @@
 script/source = "extends Node
 
 const Player := preload( 'res://entities/actors/Player.tscn' )
-onready var transition = $TransitionScreen/ColorRect/AnimationPlayer
+onready var transition = $TransitionScreen/CanvasLayer/ColorRect/AnimationPlayer
 var active_scene = null
 var active_player = null
 
@@ -90,7 +90,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
-shader_param/cutoff = 1.0
+shader_param/cutoff = 0.0
 shader_param/smooth_size = 0.1
 shader_param/mask = ExtResource( 2 )
 
@@ -118,15 +118,25 @@ current = true
 smoothing_enabled = true
 
 [node name="PauseScreen" parent="." instance=ExtResource( 1 )]
+mouse_filter = 2
 
-[node name="TransitionScreen" type="CanvasLayer" parent="."]
-layer = 4
+[node name="TransitionScreen" type="Control" parent="."]
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ColorRect" type="ColorRect" parent="TransitionScreen"]
+[node name="CanvasLayer" type="CanvasLayer" parent="TransitionScreen"]
+
+[node name="ColorRect" type="ColorRect" parent="TransitionScreen/CanvasLayer"]
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionScreen/ColorRect"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionScreen/CanvasLayer/ColorRect"]
 anims/Fade = SubResource( 4 )
