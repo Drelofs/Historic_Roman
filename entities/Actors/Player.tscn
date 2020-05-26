@@ -30,21 +30,20 @@ func _physics_process(delta):
 	var _distance_x = player_target.x - player_position.x # Verschil op X-as
 	var _distance_y = player_target.y - player_position.y # Verschil op Y-as
 	var _distance = sqrt( pow( _distance_x, 2 ) + pow( _distance_y, 2 ) ) # Pythagoras voor ware afstand
-	var _angle = asin( _distance_x / _distance ) # De hoek in radialen
-	
-	# Als de afstand kleiner is dan de stapgrootte, maak stapgrootte gelijk aan afstand
-	step_size = speed if _distance > speed else _distance
-	var _movement_on_x = step_size * sin(_angle)
-	var _movement_on_y = step_size * cos(_angle) * sign(_distance_y)
-	var _motion = Vector2( _movement_on_x, _movement_on_y ) # De afstand die elke frame wordt afgelegd
-	move_and_collide(_motion * delta)
-	
-	# Loop beweging
-	var _is_moving = step_size / speed
-	Character.walking = _is_moving
-	
-	# Welke kant kijkt de speler op
-	
+	if _distance:
+		var _angle = asin( _distance_x / _distance ) # De hoek in radialen
+		# Als de afstand kleiner is dan de stapgrootte, maak stapgrootte gelijk aan afstand
+		step_size = speed if _distance > speed else _distance
+		var _movement_on_x = step_size * sin(_angle)
+		var _movement_on_y = step_size * cos(_angle) * sign(_distance_y)
+		var _motion = Vector2( _movement_on_x, _movement_on_y ) # De afstand die elke frame wordt afgelegd
+		move_and_collide(_motion * delta)
+		
+		var _is_moving = step_size / speed
+		Character.walking = _is_moving
+	else:
+		Character.walking = 0
+
 
 "
 

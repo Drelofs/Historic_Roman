@@ -42,6 +42,7 @@ func spawn_player( x, y ) -> void:
 		active_player = Player.instance()
 		var position = Vector2( x, y )
 		active_player.set_position( position )
+		active_player.player_target = active_player.position
 		active_scene.add_child( active_player )
 		active_player.set_owner( active_scene )
 
