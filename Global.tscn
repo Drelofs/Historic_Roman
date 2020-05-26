@@ -114,9 +114,14 @@ tracks/0/keys = {
 script = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
+position = Vector2( 960, 540 )
 current = true
+process_mode = 0
+limit_smoothed = true
 smoothing_enabled = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="PauseScreen" parent="." instance=ExtResource( 1 )]
 mouse_filter = 2

@@ -8,15 +8,15 @@ script/source = "extends KinematicBody2D
 onready var Character = $Aagje
 
 
-var speed = 100
+var speed = 200
 var step_size = speed
-var player_position = get_position()
-var player_target = Vector2(0,0)
+var player_position
+var player_target
 
-
-func _ready() -> void:
-	pass
-
+func _ready():
+	player_position = position
+	player_target = player_position
+	print(player_position)
 
 func _input(event):
 	if event.is_action_pressed(\"left_click\"):
@@ -30,14 +30,14 @@ func _physics_process(delta):
 	var _distance_x = player_target.x - player_position.x # Verschil op X-as
 	var _distance_y = player_target.y - player_position.y # Verschil op Y-as
 	var _distance = sqrt( pow( _distance_x, 2 ) + pow( _distance_y, 2 ) ) # Pythagoras voor ware afstand
-	if _distance:
+	if _distance > 4 || _distance < -4:
 		var _angle = asin( _distance_x / _distance ) # De hoek in radialen
 		# Als de afstand kleiner is dan de stapgrootte, maak stapgrootte gelijk aan afstand
 		step_size = speed if _distance > speed else _distance
 		var _movement_on_x = step_size * sin(_angle)
 		var _movement_on_y = step_size * cos(_angle) * sign(_distance_y)
 		var _motion = Vector2( _movement_on_x, _movement_on_y ) # De afstand die elke frame wordt afgelegd
-		move_and_collide(_motion * delta)
+		move_and_slide(_motion)
 		
 		var _is_moving = step_size / speed
 		Character.walking = _is_moving
@@ -58,4 +58,4 @@ shape = SubResource( 2 )
 
 [node name="Aagje" parent="." instance=ExtResource( 1 )]
 position = Vector2( -1.01793, -0.649834 )
-scale = Vector2( 0.35, 0.35 )
+scale = Vector2( 0.7, 0.7 )
