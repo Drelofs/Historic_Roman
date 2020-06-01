@@ -3,7 +3,7 @@
 [ext_resource path="res://Entities/Objects/Gateway/Gateway.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 82.4936, 120.89 )
+extents = Vector2( 132.92, 231.871 )
 
 [node name="Gateway" type="Area2D"]
 script = ExtResource( 1 )

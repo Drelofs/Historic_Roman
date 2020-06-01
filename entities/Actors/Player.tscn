@@ -16,9 +16,12 @@ var player_target
 func _ready():
 	player_position = position
 	player_target = player_position
-	print(player_position)
+	
+	if Global.active_scene.has_node(\"Floor\"):
+		Global.active_scene.get_node(\"Floor\").connect( \"input_event\", self, \"_on_Floor_input_event\" )
 
-func _input(event):
+
+func _on_Floor_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed(\"left_click\"):
 		player_target = get_global_mouse_position()
 		var _character_scale_x = abs(Character.scale.x)

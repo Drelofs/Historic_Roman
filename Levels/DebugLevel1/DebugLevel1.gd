@@ -1,22 +1,11 @@
 extends Node2D
 
 
-const next_level = 'res://Levels/DebugLevel1/DebugLevel1.tscn'
-
 
 func _ready():
-	pass # Replace with function body.
+	Global.spawn_player(1000,1000)
 
 
 func _input( event ):
 	if event.is_action_pressed("ui_up"):
 		Global.spawn_player( 300, 1000 )
-	
-	if event.is_action_pressed("ui_down"):
-		Global.remove_player()
-	
-	if event.is_action_pressed("ui_left"):
-		Global.visible(true)
-		
-	if event.is_action_pressed("ui_right"):
-		Global.visible(false)
