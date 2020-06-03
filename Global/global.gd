@@ -1,6 +1,6 @@
 extends Node
 
-onready var Player = preload( "res://Entities/Actors/player.tscn" )
+onready var Player = preload( "res://Entities/Actors/player_f.tscn" )
 onready var transition = $TransitionScreen/CanvasLayer/ColorRect/AnimationPlayer
 var active_scene = null
 var active_player = null

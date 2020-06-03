@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Levels/DebugLevel1/debug_level_1.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Backgrounds/demo_room.png" type="Texture" id=2]
-[ext_resource path="res://Entities/Objects/Gateway/gateway.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/Objects/Gateway/door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/DebugLevel2/debug_level_2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Entities/Miscellanious/Floor/floor.tscn" type="PackedScene" id=5]
 
@@ -13,19 +13,10 @@ script = ExtResource( 1 )
 position = Vector2( 960, 540 )
 texture = ExtResource( 2 )
 
-[node name="Gateway" parent="." instance=ExtResource( 3 )]
-position = Vector2( 320.661, 276.9 )
-go_to = ExtResource( 4 )
-with_player = true
-player_x = 1000
-player_y = 1000
-locked = false
-
-[node name="CollisionShape2D" parent="Gateway" index="0"]
-position = Vector2( 192.752, 293.229 )
-
 [node name="Floor" parent="." instance=ExtResource( 5 )]
 
-[editable path="Gateway"]
-
-[editable path="Floor"]
+[node name="Gateway" parent="." instance=ExtResource( 3 )]
+position = Vector2( 384.952, 644.377 )
+go_to = ExtResource( 4 )
+player_x = 1200
+player_y = 1000

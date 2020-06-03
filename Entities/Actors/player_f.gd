@@ -1,9 +1,4 @@
-[gd_scene load_steps=4 format=2]
-
-[ext_resource path="res://Entities/Characters/Aagje/aagje.tscn" type="PackedScene" id=1]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends KinematicBody2D
+extends KinematicBody2D
 
 onready var Character = $Aagje
 
@@ -17,12 +12,12 @@ func _ready():
 	player_position = position
 	player_target = player_position
 	
-	if Global.active_scene.has_node(\"Floor\"):
-		Global.active_scene.get_node(\"Floor\").connect( \"input_event\", self, \"_on_Floor_input_event\" )
+	if Global.active_scene.has_node("Floor"):
+		Global.active_scene.get_node("Floor").connect( "input_event", self, "_on_Floor_input_event" )
 
 
 func _on_Floor_input_event(_viewport, event, _shape_idx):
-	if event.is_action_pressed(\"left_click\"):
+	if event.is_action_pressed("left_click"):
 		player_target = get_global_mouse_position()
 		var _character_scale_x = abs(Character.scale.x)
 		Character.scale.x = _character_scale_x * sign( player_target.x - player_position.x )
@@ -48,17 +43,3 @@ func _physics_process(_delta):
 		Character.walking = 0
 
 
-"
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 39.396, 12.754 )
-
-[node name="Player" type="KinematicBody2D"]
-script = SubResource( 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
-
-[node name="Aagje" parent="." instance=ExtResource( 1 )]
-position = Vector2( -1.01793, -0.649834 )
-scale = Vector2( 0.7, 0.7 )

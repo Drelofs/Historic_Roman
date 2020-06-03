@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Entities/Characters/Aagje/aagje.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Actors/player_f.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 39.396, 12.754 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Aagje" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1.01793, -0.649834 )
+scale = Vector2( 0.7, 0.7 )

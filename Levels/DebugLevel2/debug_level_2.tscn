@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Levels/DebugLevel2/debug_level_2.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Backgrounds/demo_room.png" type="Texture" id=2]
-[ext_resource path="res://Entities/Objects/Gateway/gateway.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/Objects/Gateway/door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Entities/Miscellanious/Floor/floor.tscn" type="PackedScene" id=4]
 
 [node name="DebugLevel2" type="Node2D"]
@@ -15,15 +15,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Gateway" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1377.13, 591.227 )
-with_player = true
-player_x = 800
-player_y = 1000
-locked = false
-
 [node name="Floor" parent="." instance=ExtResource( 4 )]
 
-[editable path="Gateway"]
-
-[editable path="Floor"]
+[node name="Gateway" parent="." instance=ExtResource( 3 )]
+position = Vector2( 382.163, 649.956 )
