@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/transition.png-2ac6dde62d61c4b725cb0331a2b8bc23.stex"
+path="res://.import/pauze.png-9a30822952b108c59f48dd5a781a7c69.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/transition.png"
-dest_files=[ "res://.import/transition.png-2ac6dde62d61c4b725cb0331a2b8bc23.stex" ]
+source_file="res://Sprites/Interfaces/pauze.png"
+dest_files=[ "res://.import/pauze.png-9a30822952b108c59f48dd5a781a7c69.stex" ]
 
 [params]
 

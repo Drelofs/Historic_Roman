@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sprites/Interfaces/hervatten.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Interfaces/hervatten_selected.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Interfaces/afsluiten.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Interfaces/afsluiten_selected.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Interfaces/game_title.png" type="Texture" id=6]
+[ext_resource path="res://Interfaces/TitleScreen/title_interface.gd" type="Script" id=7]
+
+[node name="TitleInterface" type="Control"]
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -435.5
+margin_top = 200.0
+margin_right = 435.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+margin_left = 168.0
+margin_right = 702.0
+margin_bottom = 880.0
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+margin_right = 534.0
+margin_bottom = 181.0
+texture = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+margin_left = 11.0
+margin_top = 185.0
+margin_right = 523.0
+margin_bottom = 551.0
+size_flags_horizontal = 4
+custom_constants/separation = 40
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 512.0
+margin_bottom = 163.0
+texture_normal = ExtResource( 1 )
+texture_focused = ExtResource( 2 )
+
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 203.0
+margin_right = 512.0
+margin_bottom = 366.0
+texture_normal = ExtResource( 3 )
+texture_focused = ExtResource( 4 )
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/TextureButton2" to="." method="_on_TextureButton2_pressed"]

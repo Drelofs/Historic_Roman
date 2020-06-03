@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/transition.png-2ac6dde62d61c4b725cb0331a2b8bc23.stex"
+path="res://.import/game_title.png-24e617c96d8039c8f2c834d9983f1e27.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/transition.png"
-dest_files=[ "res://.import/transition.png-2ac6dde62d61c4b725cb0331a2b8bc23.stex" ]
+source_file="res://Sprites/Interfaces/game_title.png"
+dest_files=[ "res://.import/game_title.png-24e617c96d8039c8f2c834d9983f1e27.stex" ]
 
 [params]
 

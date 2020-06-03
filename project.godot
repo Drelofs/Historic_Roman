@@ -15,13 +15,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Historische Roman"
-run/main_scene="res://Interfaces/TitleScreen/TitleScreen.tscn"
+config/name="Nieuwsgierig Aagje"
+run/main_scene="res://Interfaces/TitleScreen/title_interface.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://Global.tscn"
+Global="*res://Global/global.tscn"
 
 [display]
 

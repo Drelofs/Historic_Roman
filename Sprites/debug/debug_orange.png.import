@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/transition.png-2ac6dde62d61c4b725cb0331a2b8bc23.stex"
+path="res://.import/debug_orange.png-6b8cfe508c6e52637cd89e6dda0899ec.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Effects/transition.png"
-dest_files=[ "res://.import/transition.png-2ac6dde62d61c4b725cb0331a2b8bc23.stex" ]
+source_file="res://Sprites/debug/debug_orange.png"
+dest_files=[ "res://.import/debug_orange.png-6b8cfe508c6e52637cd89e6dda0899ec.stex" ]
 
 [params]
 
