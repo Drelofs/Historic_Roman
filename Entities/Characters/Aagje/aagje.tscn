@@ -992,7 +992,7 @@ __meta__ = {
 
 [node name="Hip" type="Bone2D" parent="Skeleton2D"]
 position = Vector2( 269.861, 622.563 )
-rotation = -0.00334798
+rotation = -0.00119976
 rest = Transform2D( 1, 0, 0, 1, 269.861, 622.563 )
 __meta__ = {
 "_edit_bone_": true,
@@ -1001,7 +1001,7 @@ __meta__ = {
 
 [node name="Torso" type="Bone2D" parent="Skeleton2D/Hip"]
 position = Vector2( -5.60355, -264.81 )
-rotation = 0.0187838
+rotation = 0.0255221
 rest = Transform2D( 1, 0, 0, 1, -5.60355, -264.81 )
 __meta__ = {
 "_edit_bone_": true
@@ -1009,7 +1009,7 @@ __meta__ = {
 
 [node name="Neck" type="Bone2D" parent="Skeleton2D/Hip/Torso"]
 position = Vector2( -1.89075, -55.462 )
-rotation = -0.00424622
+rotation = -0.00849201
 rest = Transform2D( 1, 0, 0, 1, -1.89075, -55.462 )
 __meta__ = {
 "_edit_bone_": true
@@ -1017,7 +1017,7 @@ __meta__ = {
 
 [node name="SkirtUpper" type="Bone2D" parent="Skeleton2D/Hip"]
 position = Vector2( 2.77036, 0.595337 )
-rotation = 0.00615622
+rotation = 0.0123118
 rest = Transform2D( 1, 0, 0, 1, 2.77036, 0.595337 )
 __meta__ = {
 "_edit_bone_": true,
@@ -1026,7 +1026,7 @@ __meta__ = {
 
 [node name="SkirtMid" type="Bone2D" parent="Skeleton2D/Hip/SkirtUpper"]
 position = Vector2( 2.10529, 137.895 )
-rotation = 0.00036638
+rotation = 0.000732722
 rest = Transform2D( 1, 0, 0, 1, 2.10529, 137.895 )
 __meta__ = {
 "_edit_bone_": true
@@ -1034,7 +1034,7 @@ __meta__ = {
 
 [node name="SkirtLower" type="Bone2D" parent="Skeleton2D/Hip/SkirtUpper/SkirtMid"]
 position = Vector2( 1.05267, 133.684 )
-rotation = -0.00299354
+rotation = -0.00598677
 rest = Transform2D( 1, 0, 0, 1, 1.05267, 133.684 )
 __meta__ = {
 "_edit_bone_": true

@@ -2,8 +2,6 @@
 
 [ext_resource path="res://Entities/Characters/Aagje/aagje.tscn" type="PackedScene" id=1]
 
-
-
 [sub_resource type="GDScript" id=1]
 script/source = "extends KinematicBody2D
 
@@ -23,14 +21,14 @@ func _ready():
 		Global.active_scene.get_node(\"Floor\").connect( \"input_event\", self, \"_on_Floor_input_event\" )
 
 
-func _on_Floor_input_event(viewport, event, shape_idx):
+func _on_Floor_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed(\"left_click\"):
 		player_target = get_global_mouse_position()
 		var _character_scale_x = abs(Character.scale.x)
 		Character.scale.x = _character_scale_x * sign( player_target.x - player_position.x )
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	player_position = get_position()
 	var _distance_x = player_target.x - player_position.x # Verschil op X-as
 	var _distance_y = player_target.y - player_position.y # Verschil op Y-as
