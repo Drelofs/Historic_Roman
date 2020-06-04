@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Levels/DebugLevel1/debug_level_1.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Backgrounds/demo_room.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Backgrounds/level_1.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Objects/Gateway/door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/DebugLevel2/debug_level_2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Entities/Miscellanious/Floor/floor.tscn" type="PackedScene" id=5]
@@ -16,7 +16,7 @@ texture = ExtResource( 2 )
 [node name="Floor" parent="." instance=ExtResource( 5 )]
 
 [node name="Gateway" parent="." instance=ExtResource( 3 )]
-position = Vector2( 384.952, 644.377 )
+position = Vector2( 513.556, 580.91 )
 go_to = ExtResource( 4 )
 player_x = 1200
 player_y = 1000
