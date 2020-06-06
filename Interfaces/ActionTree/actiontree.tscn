@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Interfaces/ActionTree/actiontree.gd" type="Script" id=1]
+
+[node name="actiontree" type="Area2D"]
+script = ExtResource( 1 )
+[connection signal="input_event" from="." to="." method="_on_actiontree_input_event"]
