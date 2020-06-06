@@ -2,11 +2,11 @@ extends KinematicBody2D
 
 onready var Character = $Aagje
 
-
 var speed = 200
 var step_size = speed
 var player_position
 var player_target
+
 
 func _ready():
 	player_position = position

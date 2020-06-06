@@ -8,4 +8,7 @@ func _ready():
 
 func _input( event ):
 	if event.is_action_pressed("ui_up"):
-		Global.spawn_player( 300, 1000 )
+		Global.spawn_actiontree()
+	
+	if event.is_action_pressed("ui_down"):
+		Global.remove_actiontree()
