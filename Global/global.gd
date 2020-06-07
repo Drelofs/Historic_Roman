@@ -75,10 +75,8 @@ func remove_actiontree() -> void:
 func visible( _visible ):
 	if( _visible ):
 		transition.play('Fade')
-		print('fade in')
 	else:
 		transition.play_backwards('Fade')
-		print('fade out')
 
 
 

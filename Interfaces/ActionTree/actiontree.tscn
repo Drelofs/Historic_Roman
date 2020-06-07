@@ -1,19 +1,139 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Interfaces/ActionTree/actiontree.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Interfaces/actiontree_iconring.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Interfaces/actiontree_icontalk.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Interfaces/actiontree_iconeye.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Interfaces/actiontree_iconhand.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Effects/radial_fade.png" type="Texture" id=7]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 130.0
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float cutoff : hint_range( 0.0, 1.0 );
+uniform float smooth_size : hint_range( 0.0, 1.0 );
+uniform sampler2D mask : hint_albedo;
+
+void fragment()
+{
+	float value = texture( mask, UV ).r;
+	float alpha = smoothstep( cutoff, cutoff + smooth_size, value * (1.0 - smooth_size) + smooth_size);
+	COLOR = texture(TEXTURE,UV) * vec4( COLOR.rgb, alpha );
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/cutoff = 1.0
+shader_param/smooth_size = null
+shader_param/mask = ExtResource( 7 )
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float cutoff : hint_range( 0.0, 1.0 );
+
+void fragment()
+{
+	COLOR = texture(TEXTURE,UV) * vec4( 1, 1, 1, cutoff );
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/cutoff = 0.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 130.0
 
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float cutoff : hint_range( 0.0, 1.0 );
+
+void fragment()
+{
+	COLOR = texture(TEXTURE,UV) * vec4( 1, 1, 1, cutoff );
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
+shader_param/cutoff = 0.0
+
 [sub_resource type="CircleShape2D" id=3]
 radius = 130.0
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float cutoff : hint_range( 0.0, 1.0 );
+
+void fragment()
+{
+	COLOR = texture(TEXTURE,UV) * vec4( 1, 1, 1, cutoff );
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 10 )
+shader_param/cutoff = 0.0
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 130.0
+
+[sub_resource type="Animation" id=12]
+resource_name = "Fade"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ring:material:shader_param/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LookButton/Sprite:material:shader_param/cutoff")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.35, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TakeButton/Sprite:material:shader_param/cutoff")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.35, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("TalkButton/Sprite:material:shader_param/cutoff")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.35, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
 
 [node name="ActionTree" type="Node2D"]
 scale = Vector2( 0.4, 0.4 )
@@ -22,47 +142,60 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Ring" type="Sprite" parent="."]
+material = SubResource( 5 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TalkButton" type="Area2D" parent="."]
-scale = Vector2( 0.5, 0.5 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sprite" type="Sprite" parent="TalkButton"]
-texture = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkButton"]
-shape = SubResource( 1 )
-
-[node name="LookButton" type="Area2D" parent="."]
-scale = Vector2( 0.5, 0.5 )
+[node name="LookButton" type="Area2D" parent="." groups=[
+"actiontree_buttons",
+]]
+scale = Vector2( 0.7, 0.7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Sprite" type="Sprite" parent="LookButton"]
+material = SubResource( 7 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LookButton"]
 shape = SubResource( 2 )
 
-[node name="TakeButton" type="Area2D" parent="."]
-scale = Vector2( 0.5, 0.5 )
+[node name="TakeButton" type="Area2D" parent="." groups=[
+"actiontree_buttons",
+]]
+scale = Vector2( 0.7, 0.7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Sprite" type="Sprite" parent="TakeButton"]
+material = SubResource( 9 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TakeButton"]
 shape = SubResource( 3 )
-[connection signal="input_event" from="TalkButton" to="." method="_on_TalkButton_input_event"]
+
+[node name="TalkButton" type="Area2D" parent="." groups=[
+"actiontree_buttons",
+]]
+scale = Vector2( 0.7, 0.7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="TalkButton"]
+material = SubResource( 11 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkButton"]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Fade = SubResource( 12 )
 [connection signal="input_event" from="LookButton" to="." method="_on_LookButton_input_event"]
 [connection signal="input_event" from="TakeButton" to="." method="_on_TakeButton_input_event"]
+[connection signal="input_event" from="TalkButton" to="." method="_on_TalkButton_input_event"]

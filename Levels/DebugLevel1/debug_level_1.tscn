@@ -23,7 +23,7 @@ player_x = 1200
 player_y = 1000
 
 [node name="InspectableItem" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1721.13, 599.745 )
+position = Vector2( 1758.08, 478.028 )
 
 [node name="InspectableItem2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 934.486, 192.476 )
+position = Vector2( 1741.54, 675.534 )
