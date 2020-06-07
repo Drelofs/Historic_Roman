@@ -14,11 +14,9 @@ func _ready():
 
 func _process(delta):
 	if selected_node == null:
-		visible = false
 		if previous_state != selected_node:
-			position.x = 0
-			position.y = 0
 			previous_state = selected_node
+			$AnimationPlayer.play_backwards("Fade")
 		
 	else:
 		visible = true
