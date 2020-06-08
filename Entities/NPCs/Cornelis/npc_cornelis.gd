@@ -1,7 +1,7 @@
 extends Node
 
 
-var description = "Wat een vreemd object."
+var description = "Cornelis zit rustig in zijn stoel. Had ik maar eens een rustdag."
 
 
 func _on_InspectableItem_input_event(viewport, event, shape_idx):
@@ -17,8 +17,8 @@ func look():
 
 func take():
 	Global.active_actiontree.selected_node = null
-	Global.show_text( "Ik heb dit voorwerp niet nodig." )
+	Global.show_text( "Hij is iets te zwaar om op te tillen." )
 
 func talk():
 	Global.active_actiontree.selected_node = null
-	Global.show_text( "Waarom zou ik met een object praten?" )
+	Global.active_player.conversation_partner = self

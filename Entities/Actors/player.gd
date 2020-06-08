@@ -6,6 +6,7 @@ var speed = 200
 var step_size = speed
 var player_position
 var player_target
+var conversation_partner = null
 
 
 func _ready():
@@ -17,7 +18,7 @@ func _ready():
 
 
 func _on_Floor_input_event(_viewport, event, _shape_idx):
-	if event.is_action_pressed("left_click"):
+	if event.is_action_pressed("left_click") && !conversation_partner:
 		player_target = get_global_mouse_position()
 		var _character_scale_x = abs(Character.scale.x)
 		Character.scale.x = _character_scale_x * sign( player_target.x - player_position.x )
@@ -41,5 +42,22 @@ func _physics_process(_delta):
 		Character.walking = _is_moving
 	else:
 		Character.walking = 0
+	
+	if conversation_partner:
+		if Global.active_scene.has_node( conversation_partner.get_path() ):
+			Global.zoom_x = 0.8
+			Global.zoom_y = 0.8
+			var _x_between = ( position.x + conversation_partner.position.x ) / 2
+			var _y_between = ( position.y + conversation_partner.position.y ) / 2 - 200
+			Global.camera.position = Vector2( _x_between, _y_between )
+		else:
+			conversation_partner = null
+	else:
+		Global.camera.position = Vector2( 960, 540 )
+		Global.zoom_x = 1
+		Global.zoom_y = 1
 
+func _input(event):
+	if event.is_action_pressed("ui_down"):
+		conversation_partner = null
 

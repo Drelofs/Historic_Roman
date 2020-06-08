@@ -3,16 +3,23 @@ extends Node
 onready var Player = preload( "res://Entities/Actors/player.tscn" )
 onready var ActionTree = preload("res://Interfaces/ActionTree/actiontree.tscn")
 onready var transition = $TransitionScreen/CanvasLayer/ColorRect/AnimationPlayer
+onready var camera = $Camera2D
 var active_scene = null
 var active_player = null
 var active_actiontree = null
+var zoom_x = 1
+var zoom_y = 1
+var zoom_speed = 10
 
 
 func _ready():
 	var root = get_tree().get_root()
 	active_scene = root.get_child( root.get_child_count() - 1 )
-	
-	transition.set_current_animation('Fade')
+
+
+func _process(delta):
+	camera.zoom.x += ( zoom_x - camera.zoom.x ) / zoom_speed;
+	camera.zoom.y += ( zoom_y - camera.zoom.y ) / zoom_speed;
 
 
 # Laad de gewenste scene met de speler
@@ -82,12 +89,16 @@ func visible( _visible ):
 		transition.play_backwards('Fade')
 
 
+# Pusht tekst naar je scherm
 func show_text( string ):
 	$DialogOverlay.show_text( string )
 
 
+# Pusht dialoog tekst naar je scherm
 func show_dialog( string, speaker ):
 	$DialogOverlay.show_dialog( string, speaker )
+
+
 
 
 
