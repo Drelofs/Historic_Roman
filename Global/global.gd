@@ -79,6 +79,15 @@ func visible( _visible ):
 		transition.play_backwards('Fade')
 
 
+func show_text( string ):
+	$DialogOverlay.show_text( string )
+
+
+func show_dialog( string, speaker ):
+	$DialogOverlay.show_dialog( string, speaker )
+
+
+
 
 
 

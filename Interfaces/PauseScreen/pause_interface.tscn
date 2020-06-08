@@ -13,11 +13,10 @@ __meta__ = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 100
+layer = 5
 
 [node name="Pause" type="Control" parent="CanvasLayer"]
 pause_mode = 2
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

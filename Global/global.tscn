@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Sprites/Effects/fade.png" type="Texture" id=1]
+[ext_resource path="res://Interfaces/DialogOverlay/dialog_overlay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Global/global.gd" type="Script" id=3]
+[ext_resource path="res://Interfaces/PauseScreen/pause_interface.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -20,7 +22,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/cutoff = 0.0
+shader_param/cutoff = 1.0
 shader_param/smooth_size = 0.1
 shader_param/mask = ExtResource( 1 )
 
@@ -52,6 +54,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="DialogOverlay" parent="." instance=ExtResource( 2 )]
+
+[node name="PauseInterface" parent="." instance=ExtResource( 4 )]
+
 [node name="TransitionScreen" type="Control" parent="."]
 mouse_filter = 2
 __meta__ = {
@@ -59,6 +65,7 @@ __meta__ = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="TransitionScreen"]
+layer = 6
 
 [node name="ColorRect" type="ColorRect" parent="TransitionScreen/CanvasLayer"]
 material = SubResource( 2 )

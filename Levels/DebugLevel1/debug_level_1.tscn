@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Levels/DebugLevel1/debug_level_1.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Backgrounds/level_1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Backgrounds/room_storage.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Objects/Gateway/door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/DebugLevel2/debug_level_2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Entities/Miscellanious/Floor/floor.tscn" type="PackedScene" id=5]
@@ -17,13 +17,13 @@ texture = ExtResource( 2 )
 [node name="Floor" parent="." instance=ExtResource( 5 )]
 
 [node name="Gateway" parent="." instance=ExtResource( 3 )]
-position = Vector2( 513.556, 580.91 )
+position = Vector2( 954.835, 596.733 )
 go_to = ExtResource( 4 )
 player_x = 1200
 player_y = 1000
 
 [node name="InspectableItem" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1758.08, 478.028 )
+position = Vector2( 1538.32, 710.095 )
 
 [node name="InspectableItem2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1741.54, 675.534 )
+position = Vector2( 447.59, 679.05 )

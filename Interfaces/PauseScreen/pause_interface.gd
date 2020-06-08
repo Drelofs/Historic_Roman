@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+	visible = false
 	$MarginContainer/VBoxContainer/VBoxContainer/TextureButton.grab_focus()
 	
 func _physics_process(_delta):
