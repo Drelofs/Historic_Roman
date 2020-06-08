@@ -7,7 +7,7 @@
 [ext_resource path="res://Sprites/Interfaces/actiontree_iconhand.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Effects/radial_fade.png" type="Texture" id=7]
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -22,11 +22,29 @@ void fragment()
 	COLOR = texture(TEXTURE,UV) * vec4( COLOR.rgb, alpha );
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/cutoff = 1.0
 shader_param/smooth_size = null
 shader_param/mask = ExtResource( 7 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float cutoff : hint_range( 0.0, 1.0 );
+
+void fragment()
+{
+	COLOR = texture(TEXTURE,UV) * vec4( 1, 1, 1, cutoff );
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/cutoff = 0.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 130.0
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
@@ -43,10 +61,10 @@ void fragment()
 shader = SubResource( 6 )
 shader_param/cutoff = 0.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=8]
 radius = 130.0
 
-[sub_resource type="Shader" id=8]
+[sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -57,29 +75,11 @@ void fragment()
 	COLOR = texture(TEXTURE,UV) * vec4( 1, 1, 1, cutoff );
 }"
 
-[sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 8 )
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
 shader_param/cutoff = 0.0
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 130.0
-
-[sub_resource type="Shader" id=10]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform float cutoff : hint_range( 0.0, 1.0 );
-
-void fragment()
-{
-	COLOR = texture(TEXTURE,UV) * vec4( 1, 1, 1, cutoff );
-}"
-
-[sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 10 )
-shader_param/cutoff = 0.0
-
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=11]
 radius = 130.0
 
 [sub_resource type="Animation" id=12]
@@ -143,7 +143,7 @@ __meta__ = {
 }
 
 [node name="Ring" type="Sprite" parent="."]
-material = SubResource( 5 )
+material = SubResource( 2 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -158,11 +158,11 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="LookButton"]
-material = SubResource( 7 )
+material = SubResource( 4 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LookButton"]
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="TakeButton" type="Area2D" parent="." groups=[
 "actiontree_buttons",
@@ -173,11 +173,11 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="TakeButton"]
-material = SubResource( 9 )
+material = SubResource( 7 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TakeButton"]
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="TalkButton" type="Area2D" parent="." groups=[
 "actiontree_buttons",
@@ -188,11 +188,11 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="TalkButton"]
-material = SubResource( 11 )
+material = SubResource( 10 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TalkButton"]
-shape = SubResource( 1 )
+shape = SubResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Fade = SubResource( 12 )

@@ -14,6 +14,8 @@ func _ready():
 
 func _process(delta):
 	if selected_node == null:
+		if position.x == 0 && position.y == 0:
+			visible=true
 		if previous_state != selected_node:
 			previous_state = selected_node
 			$AnimationPlayer.play_backwards("Fade")
@@ -43,17 +45,14 @@ func _position_buttons():
 
 func _on_TalkButton_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed('left_click') && selected_node:
-		print('Talk')
 		selected_node.talk()
 
 
 func _on_LookButton_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed('left_click') && selected_node:
-		print('Look')
 		selected_node.look()
 
 
 func _on_TakeButton_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed('left_click') && selected_node:
-		print('Take')
 		selected_node.take()
