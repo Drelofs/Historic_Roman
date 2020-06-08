@@ -18,6 +18,8 @@ func _ready():
 # Laad de gewenste scene met de speler
 # Parameters: Gewenste scene, of de speler overgeplaatst moet worden, [X & Y waarde van overgeplaatste speler] (optioneel)
 func go_to_level( path, with_player, player_x = 0, player_y = 0 ):
+	transition.play_backwards("Fade")
+	yield(transition, "animation_finished")
 	call_deferred( "_deferred_goto_scene", path, with_player, player_x, player_y )
 
 func _deferred_goto_scene( path, with_player, player_x = 0, player_y = 0 ): 
