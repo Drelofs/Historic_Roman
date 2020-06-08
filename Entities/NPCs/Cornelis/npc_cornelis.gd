@@ -9,7 +9,7 @@ func _on_InspectableItem_input_event(viewport, event, shape_idx):
 			if Global.active_actiontree.selected_node == self:
 				Global.active_actiontree.selected_node = null
 			else:
-				Global.active_actiontree.selected_node = self
+				Global.active_actiontree.request_selection( self )
 
 func look():
 	Global.active_actiontree.selected_node = null

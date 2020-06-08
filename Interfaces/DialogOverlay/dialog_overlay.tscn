@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Interfaces/DialogOverlay/dialog_overlay.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Ganttlets.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sprites/Interfaces/textfield.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
 
 [node name="DialogOverlay" type="Control"]
 anchor_right = 1.0
@@ -35,8 +52,54 @@ mouse_filter = 2
 alignment = 2
 
 [node name="TextLines" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+margin_top = 236.0
+margin_right = 1760.0
+margin_bottom = 336.0
+rect_min_size = Vector2( 100, 100 )
+mouse_filter = 2
+
+[node name="TextField" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 margin_top = 340.0
 margin_right = 1760.0
 margin_bottom = 440.0
-rect_min_size = Vector2( 100, 100 )
-mouse_filter = 2
+texture = ExtResource( 4 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/TextField"]
+margin_left = 95.0
+margin_top = 6.0
+margin_right = 1677.0
+margin_bottom = 94.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/TextField/MarginContainer"]
+margin_right = 1582.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/MarginContainer/VBoxContainer/TextField/MarginContainer/HBoxContainer"]
+margin_right = 1399.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+max_length = 50
+placeholder_text = "Typ hier wat je wilt zeggen."
+placeholder_alpha = 0.154
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Versturen" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/TextField/MarginContainer/HBoxContainer"]
+margin_left = 1403.0
+margin_right = 1582.0
+margin_bottom = 88.0
+custom_fonts/font = SubResource( 2 )
+text = "Versturen"
+flat = true

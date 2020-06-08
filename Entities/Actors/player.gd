@@ -50,8 +50,10 @@ func _physics_process(_delta):
 			var _x_between = ( position.x + conversation_partner.position.x ) / 2
 			var _y_between = ( position.y + conversation_partner.position.y ) / 2 - 200
 			Global.camera.position = Vector2( _x_between, _y_between )
+			Global.textfield_visible( true )
 		else:
 			conversation_partner = null
+			Global.textfield_visible( false )
 	else:
 		Global.camera.position = Vector2( 960, 540 )
 		Global.zoom_x = 1

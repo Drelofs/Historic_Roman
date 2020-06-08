@@ -99,6 +99,10 @@ func show_dialog( string, speaker ):
 	$DialogOverlay.show_dialog( string, speaker )
 
 
+func textfield_visible( visible ):
+	$DialogOverlay.textfield_visible = visible
+
+
 
 
 

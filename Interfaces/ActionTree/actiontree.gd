@@ -43,6 +43,12 @@ func _position_buttons():
 		buttons[i].position.y = _y
 
 
+func request_selection( node ):
+	if Global.active_player:
+		if !Global.active_player.conversation_partner:
+			selected_node = node
+
+
 func _on_TalkButton_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed('left_click') && selected_node:
 		selected_node.talk()

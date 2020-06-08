@@ -10,5 +10,7 @@ export var locked = false 			# Of de doorgang gebruikt worden
 
 func _on_Gateway_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed('left_click') && !locked && go_to:
-		var _path = go_to.get_path()
-		Global.go_to_level( _path, with_player, player_x, player_y )
+		if Global.active_player:
+			if !Global.active_player.conversation_partner:
+				var _path = go_to.get_path()
+				Global.go_to_level( _path, with_player, player_x, player_y )
