@@ -28,6 +28,7 @@ func go_to_level( path, with_player, player_x = 0, player_y = 0 ):
 	transition.play_backwards("Fade")
 	yield(transition, "animation_finished")
 	call_deferred( "_deferred_goto_scene", path, with_player, player_x, player_y )
+	
 
 func _deferred_goto_scene( path, with_player, player_x = 0, player_y = 0 ): 
 	remove_player()
@@ -40,7 +41,7 @@ func _deferred_goto_scene( path, with_player, player_x = 0, player_y = 0 ):
 	if with_player == true:
 		spawn_player( player_x, player_y )
 		spawn_actiontree()
-		transition.play('Fade')
+	transition.play('Fade')
 
 
 # Spawn de speler op genoemde locatie (alleen als speler niet al bestaat)
