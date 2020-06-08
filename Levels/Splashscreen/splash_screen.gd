@@ -9,7 +9,7 @@ const next_scene = 'res://Levels/TitleScreen/title_screen.tscn'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	yield(get_tree().create_timer(3.0), "timeout")
+	yield(get_tree().create_timer(2.2), "timeout")
 
 	Global.go_to_level( next_scene, false)
 

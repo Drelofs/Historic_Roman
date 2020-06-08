@@ -1,18 +1,18 @@
 extends Control
 
-const next_scene = 'res://Levels/DebugLevel1/debug_level_1.tscn'
+const next_scene = 'res://Levels/Introduction/introduction.tscn'
+onready var Background = $CanvasLayer/TextureRectWhite
+var value = 0
 
-func _ready():
-	$CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/TextureButton.grab_focus()
-	
-func _physics_process(_delta):
-	if $CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/TextureButton.is_hovered():
-		$CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/TextureButton.grab_focus()
-	if $CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/TextureButton2.is_hovered():
-		$CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/TextureButton2.grab_focus()	
+func _process(delta):
+	value += delta / 2
+	var cutoff = abs(sin(value)) * 0.1 + 0.8
+	Background.material.set_shader_param('cutoff', cutoff)
 
-func _on_TextureButton2_pressed():
+
+func _on_Spelen_pressed():
+	Global.go_to_level( next_scene, false )
+
+
+func _on_Afsluiten_pressed():
 	get_tree().quit()
-
-func _on_TextureButton_pressed():
-	Global.go_to_level( next_scene, true, 100, 100 )

@@ -10,16 +10,34 @@ var active_actiontree = null
 var zoom_x = 1
 var zoom_y = 1
 var zoom_speed = 10
+var inventory = []
+var session_id
 
 
 func _ready():
 	var root = get_tree().get_root()
 	active_scene = root.get_child( root.get_child_count() - 1 )
+	_generate_id()
+	print(session_id)
 
 
 func _process(delta):
 	camera.zoom.x += ( zoom_x - camera.zoom.x ) / zoom_speed;
 	camera.zoom.y += ( zoom_y - camera.zoom.y ) / zoom_speed;
+
+
+func _generate_id():
+	var chars = "abcdefghijklmnopqrstuvwxyz!@#1234567890";
+	var o = []
+	var rng = RandomNumberGenerator.new()
+	for ss in chars:
+		o.append(ss);
+		chars = ""
+	for x in range(10):
+		rng.randomize()
+		chars += o[rng.randf_range(0, o.size())]
+	session_id = chars
+
 
 
 # Laad de gewenste scene met de speler
@@ -28,7 +46,6 @@ func go_to_level( path, with_player, player_x = 0, player_y = 0 ):
 	transition.play_backwards("Fade")
 	yield(transition, "animation_finished")
 	call_deferred( "_deferred_goto_scene", path, with_player, player_x, player_y )
-	
 
 func _deferred_goto_scene( path, with_player, player_x = 0, player_y = 0 ): 
 	remove_player()
@@ -99,11 +116,14 @@ func show_text( string ):
 func show_dialog( string, speaker ):
 	$DialogOverlay.show_dialog( string, speaker )
 
-
+# Zet input aan of uit
 func textfield_visible( visible ):
 	$DialogOverlay.textfield_visible = visible
 
-
+# Voegt item to aan inventory
+func add_to_inventory(object):
+	inventory.append(object.itemName)
+	print(inventory)
 
 
 
