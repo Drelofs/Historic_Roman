@@ -20,3 +20,7 @@ func _process(delta):
 
 func _on_Timer_timeout():
 	Global.go_to_level( next_level, true, 1000, 1000 )
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			Global.go_to_level( next_level, true, 1000, 1000 )
