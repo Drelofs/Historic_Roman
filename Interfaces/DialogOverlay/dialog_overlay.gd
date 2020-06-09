@@ -3,6 +3,7 @@ extends Control
 
 onready var TextLines = $CanvasLayer/MarginContainer/VBoxContainer/TextLines
 onready var TextField = $CanvasLayer/MarginContainer/VBoxContainer/TextField
+onready var InputText = $CanvasLayer/MarginContainer/VBoxContainer/TextField/MarginContainer/HBoxContainer/LineEdit
 onready var DisplayDefault = preload("res://Interfaces/DialogOverlay/DisplayDefault/display_default.tscn")
 onready var DisplayDialog = preload("res://Interfaces/DialogOverlay/DisplayDialog/display_dialog.tscn")
 var textlog = []
@@ -24,8 +25,19 @@ func show_text( string ):
 
 
 func show_dialog( string, speaker ):
-	var display = DisplayDefault.instance()
+	var display = DisplayDialog.instance()
+	display.speaker = speaker
 	display.string = string
 	TextLines.add_child(display)
 
 
+func clear():
+	for i in textlog:
+		if i.is_in_group("dialog"):
+			i.queue_free()
+
+
+func _on_Versturen_pressed():
+	var text = InputText.text
+	show_dialog( text, "Aagje" )
+	Global.send_to_api( text )

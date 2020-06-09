@@ -1,6 +1,6 @@
 extends Node
 
-
+const npc_name = "Cornelis"
 var description = "Cornelis zit rustig in zijn stoel. Had ik maar eens een rustdag."
 
 

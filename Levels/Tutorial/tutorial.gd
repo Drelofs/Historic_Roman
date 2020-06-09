@@ -19,4 +19,4 @@ func _process(delta):
 
 
 func _on_Timer_timeout():
-	Global.go_to_level( next_level, true, 1000, 1300 )
+	Global.go_to_level( next_level, true, 1000, 1000 )

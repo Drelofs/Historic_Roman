@@ -4,9 +4,12 @@ onready var Player = preload( "res://Entities/Actors/player.tscn" )
 onready var ActionTree = preload("res://Interfaces/ActionTree/actiontree.tscn")
 onready var transition = $TransitionScreen/CanvasLayer/ColorRect/AnimationPlayer
 onready var camera = $Camera2D
+onready var API = $HTTPRequest
+var url = "http://134.122.53.241:5005/webhooks/rest/webhook"
 var active_scene = null
 var active_player = null
 var active_actiontree = null
+var conversation_partner = null
 var zoom_x = 1
 var zoom_y = 1
 var zoom_speed = 10
@@ -20,11 +23,9 @@ func _ready():
 	_generate_id()
 	print(session_id)
 
-
 func _process(delta):
 	camera.zoom.x += ( zoom_x - camera.zoom.x ) / zoom_speed;
 	camera.zoom.y += ( zoom_y - camera.zoom.y ) / zoom_speed;
-
 
 func _generate_id():
 	var chars = "abcdefghijklmnopqrstuvwxyz!@#1234567890";
@@ -38,6 +39,21 @@ func _generate_id():
 		chars += o[rng.randf_range(0, o.size())]
 	session_id = chars
 
+
+# Stuur string naar chat API
+# Parameters: tekst
+func send_to_api( string ):
+	var data = {"sender": session_id, "message": string}
+	var query = JSON.print(data)
+	var headers = ["Content-Type: application/json"]
+	API.request( url, headers, true, HTTPClient.METHOD_POST, query)
+
+func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+	if response_code == 200:
+		var response = parse_json(body.get_string_from_utf8())
+		if conversation_partner:
+			yield(get_tree().create_timer(1), "timeout")
+			show_dialog( response[0]["text"], conversation_partner )
 
 
 # Laad de gewenste scene met de speler
@@ -120,10 +136,16 @@ func show_dialog( string, speaker ):
 func textfield_visible( visible ):
 	$DialogOverlay.textfield_visible = visible
 
+func clear():
+	$DialogOverlay.clear()
+
 # Voegt item to aan inventory
 func add_to_inventory(object):
 	inventory.append(object.itemName)
 	print(inventory)
+
+
+
 
 
 

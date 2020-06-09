@@ -43,7 +43,9 @@ func _physics_process(_delta):
 	else:
 		Character.walking = 0
 	
+	Global.conversation_partner = null
 	if conversation_partner:
+		Global.conversation_partner = conversation_partner.npc_name
 		if Global.active_scene.has_node( conversation_partner.get_path() ):
 			Global.zoom_x = 0.8
 			Global.zoom_y = 0.8
@@ -54,10 +56,13 @@ func _physics_process(_delta):
 		else:
 			conversation_partner = null
 			Global.textfield_visible( false )
+			Global.clear()
 	else:
 		Global.camera.position = Vector2( 960, 540 )
 		Global.zoom_x = 1
 		Global.zoom_y = 1
+		Global.textfield_visible( false )
+		Global.clear()
 
 func _input(event):
 	if event.is_action_pressed("ui_down"):
