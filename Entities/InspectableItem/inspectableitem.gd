@@ -2,13 +2,12 @@ extends Node
 
 
 export var description = "Wat een vreemd object."
-
+var taken = false
 
 func _on_InspectableItem_input_event(viewport, event, shape_idx):
 	if Global.active_actiontree != null && event.is_action_pressed('left_click'):
 			if Global.active_actiontree.selected_node == self:
 				Global.active_actiontree.selected_node = null
-			
 			else:
 				Global.active_actiontree.request_selection( self )
 
@@ -17,8 +16,12 @@ func look():
 	Global.show_text( description )
 
 func take():
-	Global.active_actiontree.selected_node = null
-	Global.show_text( "Ik heb dit voorwerp niet nodig." )
+	if(!taken):
+		Global.active_inventory.updateInventory(self)
+		taken = true
+		Global.active_actiontree.selected_node = null
+	#Global.active_actiontree.selected_node = null
+	#Global.show_text( "Ik heb dit voorwerp niet nodig." )
 
 func talk():
 	Global.active_actiontree.selected_node = null

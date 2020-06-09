@@ -2,6 +2,7 @@ extends Node
 
 onready var Player = preload( "res://Entities/Actors/player.tscn" )
 onready var ActionTree = preload("res://Interfaces/ActionTree/actiontree.tscn")
+onready var Inventory = preload("res://Interfaces/Inventory/inventory_interface.tscn")
 onready var transition = $TransitionScreen/CanvasLayer/ColorRect/AnimationPlayer
 onready var camera = $Camera2D
 onready var API = $HTTPRequest
@@ -9,13 +10,12 @@ var url = "http://134.122.53.241:5005/webhooks/rest/webhook"
 var active_scene = null
 var active_player = null
 var active_actiontree = null
+var active_inventory = null
 var conversation_partner = null
 var zoom_x = 1
 var zoom_y = 1
 var zoom_speed = 10
-var inventory = []
 var session_id
-
 
 func _ready():
 	var root = get_tree().get_root()
@@ -74,6 +74,7 @@ func _deferred_goto_scene( path, with_player, player_x = 0, player_y = 0 ):
 	if with_player == true:
 		spawn_player( player_x, player_y )
 		spawn_actiontree()
+		spawn_inventory()
 	transition.play('Fade')
 
 
@@ -96,8 +97,11 @@ func spawn_actiontree() -> void:
 		active_actiontree = ActionTree.instance()
 		active_scene.add_child( active_actiontree )
 		active_actiontree.set_owner( active_scene )
-
-
+func spawn_inventory() -> void:
+	if(active_inventory == null):
+		active_inventory = Inventory.instance()
+		active_scene.add_child(active_inventory)
+		active_inventory.set_owner(active_scene)
 # Verwijdert de speler (wanneer deze bestaat)
 # Parameters: geen
 func remove_player() -> void:
@@ -139,10 +143,6 @@ func textfield_visible( visible ):
 func clear():
 	$DialogOverlay.clear()
 
-# Voegt item to aan inventory
-func add_to_inventory(object):
-	inventory.append(object.itemName)
-	print(inventory)
 
 
 
