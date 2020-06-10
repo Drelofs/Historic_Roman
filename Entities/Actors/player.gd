@@ -22,6 +22,7 @@ func _on_Floor_input_event(_viewport, event, _shape_idx):
 		player_target = get_global_mouse_position()
 		var _character_scale_x = abs(Character.scale.x)
 		Character.scale.x = _character_scale_x * sign( player_target.x - player_position.x )
+		Global.active_actiontree.selected_node = null
 
 
 func _physics_process(_delta):

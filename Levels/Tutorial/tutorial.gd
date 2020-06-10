@@ -3,7 +3,7 @@ extends Node2D
 
 onready var Text = $Control/ColorRect/Label
 onready var Rect = $Control/ColorRect/TextureRect
-var next_level = "res://Levels/DebugLevel1/debug_level_1.tscn"
+var next_level = "res://Levels/Level1/level_1.tscn"
 var opacity = 0
 
 

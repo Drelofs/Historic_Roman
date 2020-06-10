@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Entities/InspectableItem/inspectableitem.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Backgrounds/woonkamer.png" type="Texture" id=2]
+[ext_resource path="res://Levels/Level2/level_2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/Objects/Gateway/door.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/debug/debug_orange.png" type="Texture" id=5]
+[ext_resource path="res://Levels/Level1/level_1.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 908.647, 100.603 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 132.92, 231.871 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 51.8093, 46.8875 )
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 2 )
+
+[node name="Floor" type="Area2D" parent="."]
+position = Vector2( 938.71, 930.721 )
+scale = Vector2( 0.823954, 1.04382 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -43.4202, 28.0298 )
+shape = SubResource( 1 )
+
+[node name="Gateway" type="Area2D" parent="."]
+position = Vector2( 1514.22, 601.742 )
+scale = Vector2( 0.36, 1 )
+script = ExtResource( 4 )
+go_to = ExtResource( 3 )
+player_x = 600
+player_y = 800
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gateway"]
+position = Vector2( 213.365, 83.4906 )
+scale = Vector2( 1.22222, 1.52 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Gateway"]
+scale = Vector2( 0.197025, 0.187313 )
+
+[node name="InspectableItem" type="Area2D" parent="."]
+position = Vector2( 332.292, 644.547 )
+script = ExtResource( 1 )
+description = "Bier voor Cornelis"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectableItem"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="InspectableItem"]
+texture = ExtResource( 5 )
+[connection signal="input_event" from="Gateway" to="Gateway" method="_on_Gateway_input_event"]
+[connection signal="input_event" from="InspectableItem" to="InspectableItem" method="_on_InspectableItem_input_event"]
