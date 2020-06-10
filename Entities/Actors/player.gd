@@ -43,10 +43,8 @@ func _physics_process(_delta):
 	else:
 		Character.walking = 0
 	
-	Global.conversation_partner = null
 	if conversation_partner:
-		Global.conversation_partner = conversation_partner.npc_name
-		if Global.active_scene.has_node( conversation_partner.get_path() ):
+		if Global.active_scene.has_node(conversation_partner.get_path()):
 			Global.zoom_x = 0.8
 			Global.zoom_y = 0.8
 			var _x_between = ( position.x + conversation_partner.position.x ) / 2
@@ -63,7 +61,6 @@ func _physics_process(_delta):
 		Global.zoom_y = 1
 		Global.textfield_visible( false )
 		Global.clear()
-
 func _input(event):
 	if event.is_action_pressed("ui_down"):
 		conversation_partner = null

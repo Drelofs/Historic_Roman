@@ -36,8 +36,8 @@ func clear():
 		if i.is_in_group("dialog"):
 			i.queue_free()
 
-
 func _on_Versturen_pressed():
 	var text = InputText.text
 	show_dialog( text, "Aagje" )
 	Global.send_to_api( text )
+	InputText.text = ""
