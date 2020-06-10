@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Sprites/Backgrounds/hall.png" type="Texture" id=1]
+[ext_resource path="res://Entities/InspectableItem/inspectableitem.gd" type="Script" id=2]
+[ext_resource path="res://Levels/Level3/level_3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/Objects/Gateway/door.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/debug/debug_orange.png" type="Texture" id=5]
+[ext_resource path="res://Levels/Level2/level_2.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/Items/letters.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 908.647, 100.603 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 132.92, 231.871 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 51.8093, 46.8875 )
+
+[node name="Level2" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 1 )
+
+[node name="Floor" type="Area2D" parent="."]
+position = Vector2( 927.893, 963.173 )
+scale = Vector2( 1.04, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 29.537, 13.6325 )
+shape = SubResource( 4 )
+
+[node name="Gateway" type="Area2D" parent="."]
+position = Vector2( 1246.49, 516.556 )
+scale = Vector2( 0.800002, 0.76 )
+script = ExtResource( 4 )
+go_to = ExtResource( 3 )
+player_x = 800
+player_y = 1000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gateway"]
+position = Vector2( 213.365, 83.4906 )
+scale = Vector2( 1.22222, 1.52 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Gateway"]
+scale = Vector2( 0.197025, 0.187313 )
+
+[node name="Letters" type="Area2D" parent="."]
+position = Vector2( 836.652, 725.677 )
+script = ExtResource( 2 )
+description = "Brieven voor mij?"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Letters"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Letters"]
+texture = ExtResource( 7 )
+
+[node name="InspectableItem2" type="Area2D" parent="."]
+position = Vector2( 997.56, 724.325 )
+script = ExtResource( 2 )
+description = "Bier voor Cornelis"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectableItem2"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="InspectableItem2"]
+texture = ExtResource( 5 )
+
+[node name="InspectableItem3" type="Area2D" parent="."]
+position = Vector2( 1150.36, 722.973 )
+script = ExtResource( 2 )
+description = "Bier voor Cornelis"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectableItem3"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="InspectableItem3"]
+texture = ExtResource( 5 )
+[connection signal="input_event" from="Gateway" to="Gateway" method="_on_Gateway_input_event"]
+[connection signal="input_event" from="Letters" to="Letters" method="_on_InspectableItem_input_event"]
+[connection signal="input_event" from="InspectableItem2" to="InspectableItem2" method="_on_InspectableItem_input_event"]
+[connection signal="input_event" from="InspectableItem3" to="InspectableItem3" method="_on_InspectableItem_input_event"]
