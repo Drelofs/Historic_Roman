@@ -22,3 +22,4 @@ func take():
 func talk():
 	Global.active_actiontree.selected_node = null
 	Global.active_player.conversation_partner = self
+	Global.send_to_api("start")

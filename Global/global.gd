@@ -11,11 +11,11 @@ var active_scene = null
 var active_player = null
 var active_actiontree = null
 var active_inventory = null
-var conversation_partner = null
 var zoom_x = 1
 var zoom_y = 1
 var zoom_speed = 10
 var session_id
+var break_convo = false # wordt gebruitk voor breken van convo mode
 
 func _ready():
 	var root = get_tree().get_root()
@@ -51,11 +51,29 @@ func send_to_api( string ):
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var response = parse_json(body.get_string_from_utf8())
-		if conversation_partner:
-			yield(get_tree().create_timer(1), "timeout")
-			show_dialog( response[0]["text"], conversation_partner )
-
-
+		print(response)
+		if active_player.conversation_partner:
+			for x in range(response.size()):
+				if !check_special_actions(response[x]["text"]):
+					show_dialog(response[x]["text"], active_player.conversation_partner.npc_name)
+					yield(get_tree().create_timer(4), "timeout")
+			if break_convo:
+				active_player.conversation_partner = null
+				break_convo = false
+func check_special_actions(string):
+	if "[BREAK]" in string:
+		print("stop interactie")
+		break_convo = true
+		return true
+	elif "[CLEAR]" in string:
+		print("clear objective")
+		return true
+	elif "[QUEST]" in string:
+		print("start objective")
+		break_convo = true
+		return true
+	else: 
+		return false
 # Laad de gewenste scene met de speler
 # Parameters: Gewenste scene, of de speler overgeplaatst moet worden, [X & Y waarde van overgeplaatste speler] (optioneel)
 func go_to_level( path, with_player, player_x = 0, player_y = 0 ):
