@@ -45,7 +45,7 @@ texture = ExtResource( 4 )
 [node name="InspectableItem2" type="Area2D" parent="."]
 position = Vector2( 1539.78, 705.395 )
 script = ExtResource( 2 )
-description = "Bier voor Cornelis"
+description = "Sap voor Cornelis"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InspectableItem2"]
 shape = SubResource( 3 )

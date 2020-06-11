@@ -38,7 +38,7 @@ shape = SubResource( 1 )
 [node name="InspectableItem" type="Area2D" parent="."]
 position = Vector2( 332.292, 644.547 )
 script = ExtResource( 1 )
-description = "Bier voor Cornelis"
+description = "Level 1 object"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InspectableItem"]
 shape = SubResource( 3 )
