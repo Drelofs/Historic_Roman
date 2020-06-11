@@ -35,6 +35,7 @@ func clear():
 	for i in textlog:
 		if i.is_in_group("dialog"):
 			i.queue_free()
+			textlog.erase(i)
 
 func _on_Versturen_pressed():
 	var text = InputText.text

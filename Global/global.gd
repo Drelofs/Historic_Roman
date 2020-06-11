@@ -2,7 +2,7 @@ extends Node
 
 onready var Player = preload( "res://Entities/Actors/player.tscn" )
 onready var ActionTree = preload("res://Interfaces/ActionTree/actiontree.tscn")
-onready var Inventory = preload("res://Interfaces/Inventory/inventory_interface.tscn")
+onready var Objective = preload("res://Interfaces/Objective/objective_interface.tscn")
 onready var transition = $TransitionScreen/CanvasLayer/ColorRect/AnimationPlayer
 onready var camera = $Camera2D
 onready var API = $HTTPRequest
@@ -10,13 +10,13 @@ var url = "http://134.122.53.241:5005/webhooks/rest/webhook"
 var active_scene = null
 var active_player = null
 var active_actiontree = null
-var active_inventory = null
+var active_objective = null
+var current_objective = null
 var zoom_x = 1
 var zoom_y = 1
 var zoom_speed = 10
 var session_id
 var break_convo = false # wordt gebruitk voor breken van convo mode
-
 func _ready():
 	var root = get_tree().get_root()
 	active_scene = root.get_child( root.get_child_count() - 1 )
@@ -55,9 +55,11 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		if active_player.conversation_partner:
 			for x in range(response.size()):
 				if !check_special_actions(response[x]["text"]):
-					show_dialog(response[x]["text"], active_player.conversation_partner.npc_name)
+					if("[QUEST]" in response[x]["text"]): show_dialog(response[x]["text"].split("]")[1], active_player.conversation_partner.npc_name)
+					else: show_dialog(response[x]["text"], active_player.conversation_partner.npc_name)
 					yield(get_tree().create_timer(4), "timeout")
 			if break_convo:
+				yield(get_tree().create_timer(2), "timeout")
 				active_player.conversation_partner = null
 				break_convo = false
 func check_special_actions(string):
@@ -67,11 +69,15 @@ func check_special_actions(string):
 		return true
 	elif "[CLEAR]" in string:
 		print("clear objective")
+		
 		return true
 	elif "[QUEST]" in string:
 		print("start objective")
+		if active_objective:
+			current_objective = "HUIDIGE QUESTE:  " + string.split("]")[1]
+			active_objective.get_node("CanvasLayer/Label").text = current_objective
 		break_convo = true
-		return true
+		return false
 	else: 
 		return false
 # Laad de gewenste scene met de speler
@@ -84,6 +90,7 @@ func go_to_level( path, with_player, player_x = 0, player_y = 0 ):
 func _deferred_goto_scene( path, with_player, player_x = 0, player_y = 0 ): 
 	remove_player()
 	remove_actiontree()
+	remove_objective()
 	active_scene.free()
 	var _scene = ResourceLoader.load(path)
 	active_scene = _scene.instance()
@@ -92,7 +99,7 @@ func _deferred_goto_scene( path, with_player, player_x = 0, player_y = 0 ):
 	if with_player == true:
 		spawn_player( player_x, player_y )
 		spawn_actiontree()
-		spawn_inventory()
+		spawn_objective()
 	transition.play('Fade')
 
 
@@ -115,26 +122,28 @@ func spawn_actiontree() -> void:
 		active_actiontree = ActionTree.instance()
 		active_scene.add_child( active_actiontree )
 		active_actiontree.set_owner( active_scene )
-func spawn_inventory() -> void:
-	if(active_inventory == null):
-		active_inventory = Inventory.instance()
-		active_scene.add_child(active_inventory)
-		active_inventory.set_owner(active_scene)
+func spawn_objective() -> void:
+	if(active_objective == null):
+		active_objective = Objective.instance()
+		if(current_objective): active_objective.get_node("CanvasLayer/Label").text = current_objective
+		active_scene.add_child(active_objective)
+		active_objective.set_owner(active_scene)
 # Verwijdert de speler (wanneer deze bestaat)
 # Parameters: geen
 func remove_player() -> void:
 	if !active_player == null:
 		active_player.queue_free();
 		active_player = null
-
-
 # Verwijdert de actiontree (wanneer deze bestaat)
 # Parameters: geen
 func remove_actiontree() -> void:
 	if !active_actiontree == null:
 		active_actiontree.queue_free();
 		active_actiontree = null
-
+func remove_objective() -> void:
+	if !active_objective == null:
+		active_objective.queue_free();
+		active_objective  = null
 
 # Toont het scherm
 # Parameters: geen

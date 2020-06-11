@@ -2,6 +2,7 @@ extends Node
 
 
 export var description = "Wat een vreemd object."
+export var object_name = "Object"
 var taken = false
 
 func _on_InspectableItem_input_event(viewport, event, shape_idx):
@@ -17,11 +18,10 @@ func look():
 
 func take():
 	if(!taken):
-		Global.active_inventory.updateInventory(self)
+		Global.get_node("Inventory").updateInventory(self)
 		taken = true
 		Global.active_actiontree.selected_node = null
-	#Global.active_actiontree.selected_node = null
-	#Global.show_text( "Ik heb dit voorwerp niet nodig." )
+		self.queue_free()
 
 func talk():
 	Global.active_actiontree.selected_node = null

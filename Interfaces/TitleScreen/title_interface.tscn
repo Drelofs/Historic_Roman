@@ -32,11 +32,11 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
 
+[sub_resource type="StyleBoxEmpty" id=4]
+
 [sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 60
 use_mipmaps = true
 use_filter = true
@@ -118,9 +118,9 @@ margin_bottom = 208.0
 [node name="Spelen" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
 margin_right = 209.0
 margin_bottom = 102.0
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.196078, 0.196078, 0.196078, 1 )
 text = "Spelen"
 flat = true
@@ -131,7 +131,7 @@ margin_right = 209.0
 margin_bottom = 208.0
 custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 8 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.196078, 0.196078, 0.196078, 1 )
 text = "Afsluiten"
 flat = true
