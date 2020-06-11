@@ -1,7 +1,7 @@
 extends Node
 
 const npc_name = "Cornelis"
-var description = "Cornelis zit rustig in zijn stoel. Had ik maar eens een rustdag."
+var description = "Mijn echtgenoot, Cornelis."
 
 
 func _on_InspectableItem_input_event(viewport, event, shape_idx):

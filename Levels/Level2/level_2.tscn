@@ -1,22 +1,22 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Sprites/Backgrounds/hall.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Backgrounds/room_downstairs.png" type="Texture" id=1]
 [ext_resource path="res://Entities/InspectableItem/inspectableitem.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Items/book.png" type="Texture" id=3]
 [ext_resource path="res://Entities/Objects/Gateway/door.gd" type="Script" id=4]
 [ext_resource path="res://Levels/Level2/level_2.gd" type="Script" id=6]
 [ext_resource path="res://Sprites/Items/letters.png" type="Texture" id=7]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 908.647, 100.603 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 51.8093, 46.8875 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 132.92, 231.871 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 132.92, 231.871 )
 
 [node name="Level2" type="Node2D"]
@@ -32,27 +32,27 @@ scale = Vector2( 1.04, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2( 29.537, 13.6325 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="Letters" type="Area2D" parent="."]
-position = Vector2( 836.652, 725.677 )
+position = Vector2( 148.222, 1003.27 )
 script = ExtResource( 2 )
 description = "Brieven voor mij?"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Letters"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Letters"]
 texture = ExtResource( 7 )
 
 [node name="InspectableItem2" type="Area2D" parent="."]
-position = Vector2( 997.56, 724.325 )
+position = Vector2( 1637.87, 870.524 )
 scale = Vector2( 0.439997, 0.600001 )
 script = ExtResource( 2 )
 description = "Boek voor Cornelis?"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InspectableItem2"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="InspectableItem2"]
 texture = ExtResource( 3 )
@@ -66,7 +66,7 @@ player_x = 1600
 player_y = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gateway"]
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Gateway"]
 scale = Vector2( 0.197025, 0.187313 )
@@ -80,7 +80,7 @@ player_x = 1000
 player_y = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gateway2"]
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Gateway2"]
 scale = Vector2( 0.197025, 0.187313 )

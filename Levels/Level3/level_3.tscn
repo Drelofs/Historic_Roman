@@ -7,13 +7,13 @@
 [ext_resource path="res://Sprites/Items/beer.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Items/juice.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 908.647, 100.603 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 51.8093, 46.8875 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 132.92, 231.871 )
 
 [node name="Level3" type="Node2D"]
@@ -28,40 +28,44 @@ scale = Vector2( 0.719998, 1.12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2( 29.537, 13.6325 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
-[node name="InspectableItem" type="Area2D" parent="."]
-position = Vector2( 287.671, 462.004 )
+[node name="List" type="Area2D" parent="."]
+position = Vector2( 295.073, 463.855 )
 script = ExtResource( 2 )
 description = " Brief aan de muur"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectableItem"]
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="List"]
+shape = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="InspectableItem"]
+[node name="Sprite" type="Sprite" parent="List"]
 visible = false
 texture = ExtResource( 4 )
 
-[node name="InspectableItem2" type="Area2D" parent="."]
-position = Vector2( 1539.78, 705.395 )
+[node name="Beer" type="Area2D" parent="."]
+position = Vector2( 1545.33, 722.051 )
 script = ExtResource( 2 )
 description = "Sap voor Cornelis"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectableItem2"]
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Beer"]
+shape = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="InspectableItem2"]
+[node name="Sprite" type="Sprite" parent="Beer"]
+position = Vector2( 1.85059, -5.55188 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 5 )
 
-[node name="InspectableItem3" type="Area2D" parent="."]
-position = Vector2( 439.114, 683.76 )
+[node name="Juice" type="Area2D" parent="."]
+position = Vector2( 440.965, 683.76 )
 script = ExtResource( 2 )
 description = "Bier voor Cornelis"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectableItem3"]
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Juice"]
+shape = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="InspectableItem3"]
+[node name="Sprite" type="Sprite" parent="Juice"]
+position = Vector2( 11.1037, 0 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 6 )
 
 [node name="Gateway" type="Area2D" parent="."]
@@ -73,11 +77,11 @@ player_x = 1450
 player_y = 900
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gateway"]
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Gateway"]
 scale = Vector2( 0.197025, 0.187313 )
-[connection signal="input_event" from="InspectableItem" to="InspectableItem" method="_on_InspectableItem_input_event"]
-[connection signal="input_event" from="InspectableItem2" to="InspectableItem2" method="_on_InspectableItem_input_event"]
-[connection signal="input_event" from="InspectableItem3" to="InspectableItem3" method="_on_InspectableItem_input_event"]
+[connection signal="input_event" from="List" to="List" method="_on_InspectableItem_input_event"]
+[connection signal="input_event" from="Beer" to="Beer" method="_on_InspectableItem_input_event"]
+[connection signal="input_event" from="Juice" to="Juice" method="_on_InspectableItem_input_event"]
 [connection signal="input_event" from="Gateway" to="Gateway" method="_on_Gateway_input_event"]
